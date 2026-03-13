@@ -172,11 +172,14 @@
             </div>
         </aside>
 
+        <!-- Sidebar Overlay (mobile) -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
         <!-- Main Content -->
         <main class="main-content">
             <header class="topbar">
                 <div style="display:flex;align-items:center;gap:12px;">
-                    <button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">
+                    <button class="mobile-toggle" id="mobileToggle">
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="page-title">
@@ -247,14 +250,43 @@
             document.getElementById('pageLoader').classList.remove('hidden');
         });
 
-        // Close sidebar on mobile when clicking outside
-        document.addEventListener('click', function (e) {
+        // Mobile sidebar toggle with overlay
+        (function () {
             const sidebar = document.getElementById('sidebar');
-            const toggle = document.querySelector('.mobile-toggle');
-            if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
-                sidebar.classList.remove('open');
+            const overlay = document.getElementById('sidebarOverlay');
+            const toggle = document.getElementById('mobileToggle');
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
             }
-        });
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    if (sidebar.classList.contains('open')) {
+                        closeSidebar();
+                    } else {
+                        openSidebar();
+                    }
+                });
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', closeSidebar);
+            }
+
+            // Close on resize to desktop
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768) {
+                    closeSidebar();
+                }
+            });
+        })();
 
         // Confirm delete
         function confirmDelete(url, name) {

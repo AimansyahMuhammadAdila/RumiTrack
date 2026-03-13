@@ -104,39 +104,41 @@
 <div class="card">
     <div class="card-body" style="padding:0;">
         <?php if (!empty($kandangList)): ?>
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Kode</th>
-                        <th>Nama Kandang</th>
-                        <th>Jenis Ruminan</th>
-                        <th>Tujuan</th>
-                        <th>Kapasitas</th>
-                        <th>Terisi</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($kandangList as $k): ?>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
                         <tr>
-                            <td class="fw-semibold text-accent"><?= esc($k['kode_kandang']) ?></td>
-                            <td class="fw-semibold"><?= esc($k['nama_kandang']) ?></td>
-                            <td><?= esc($k['jenis_ruminan']) ?></td>
-                            <td><span class="badge badge-aktif"><?= esc($k['tujuan']) ?></span></td>
-                            <td><?= $k['kapasitas'] ?> ekor</td>
-                            <td><?= $k['jumlah_ternak'] ?> ekor</td>
-                            <td>
-                                <?php
-                                $pct = $k['kapasitas'] > 0 ? ($k['jumlah_ternak'] / $k['kapasitas']) * 100 : 0;
-                                $statusClass = $pct >= 90 ? 'badge-sakit' : ($pct >= 50 ? 'badge-perawatan' : 'badge-aktif');
-                                $statusText = $pct >= 90 ? 'Penuh' : ($pct >= 50 ? 'Cukup' : 'Tersedia');
-                                ?>
-                                <span class="badge <?= $statusClass ?>"><?= $statusText ?></span>
-                            </td>
+                            <th>Kode</th>
+                            <th>Nama Kandang</th>
+                            <th>Jenis Ruminan</th>
+                            <th>Tujuan</th>
+                            <th>Kapasitas</th>
+                            <th>Terisi</th>
+                            <th>Status</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($kandangList as $k): ?>
+                            <tr>
+                                <td class="fw-semibold text-accent"><?= esc($k['kode_kandang']) ?></td>
+                                <td class="fw-semibold"><?= esc($k['nama_kandang']) ?></td>
+                                <td><?= esc($k['jenis_ruminan']) ?></td>
+                                <td><span class="badge badge-aktif"><?= esc($k['tujuan']) ?></span></td>
+                                <td><?= $k['kapasitas'] ?> ekor</td>
+                                <td><?= $k['jumlah_ternak'] ?> ekor</td>
+                                <td>
+                                    <?php
+                                    $pct = $k['kapasitas'] > 0 ? ($k['jumlah_ternak'] / $k['kapasitas']) * 100 : 0;
+                                    $statusClass = $pct >= 90 ? 'badge-sakit' : ($pct >= 50 ? 'badge-perawatan' : 'badge-aktif');
+                                    $statusText = $pct >= 90 ? 'Penuh' : ($pct >= 50 ? 'Cukup' : 'Tersedia');
+                                    ?>
+                                    <span class="badge <?= $statusClass ?>"><?= $statusText ?></span>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         <?php else: ?>
             <div class="empty-state">
                 <div class="empty-icon">🏠</div>
