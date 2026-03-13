@@ -205,6 +205,7 @@ body::before {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 .topbar {
@@ -1247,6 +1248,7 @@ textarea.form-control {
     /* Content Area */
     .content-area {
         padding: 16px 14px;
+        overflow-x: hidden;
     }
 
     /* Card Header - stack title & action */
@@ -1365,6 +1367,7 @@ textarea.form-control {
     /* Table */
     .table-responsive {
         -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
     }
 
     .data-table th,
@@ -1389,8 +1392,9 @@ textarea.form-control {
 
     /* Dashboard Hero */
     .dashboard-hero {
-        padding: 28px 20px;
+        padding: 24px 18px;
         border-radius: var(--radius-lg);
+        overflow: hidden;
     }
 
     .hero-content {
@@ -1399,44 +1403,65 @@ textarea.form-control {
     }
 
     .hero-text h1 {
-        font-size: 22px;
+        font-size: 20px;
+        word-break: break-word;
     }
 
     .hero-text p {
-        font-size: 13px;
+        font-size: 12px;
         max-width: 100%;
     }
 
     .hero-actions {
-        justify-content: center;
+        flex-direction: column;
+        width: 100%;
     }
 
     .hero-btn {
         padding: 10px 18px;
         font-size: 13px;
+        width: 100%;
+        justify-content: center;
     }
 
     .hero-illustration {
-        font-size: 52px;
+        font-size: 44px;
     }
 
     .smart-acronym {
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
     }
 
     .smart-letter {
-        font-size: 10px;
-        padding: 3px 8px;
+        font-size: 9px;
+        padding: 3px 6px;
     }
 
     /* Feature Grid */
     .feature-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
     .feature-card {
-        padding: 20px 18px;
+        padding: 18px 14px;
+    }
+
+    .feature-card .feature-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .feature-card .feature-title {
+        font-size: 13px;
+    }
+
+    .feature-card .feature-desc {
+        font-size: 11px;
     }
 
     /* Login / Register */
